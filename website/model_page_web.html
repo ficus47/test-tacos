@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tacos Fiesta</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #0b0d19;
+      color: #fff;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      text-align: center;
+      padding: 2em;
+      background: linear-gradient(45deg, #011827, #0b0d19);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      color: #00bcd4;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    header p {
+      font-size: 1.2em;
+      color: #bbb;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5em;
+      padding: 1em 0;
+      background-color: #0b0d19;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    nav a {
+      color: #00bcd4;
+      text-decoration: none;
+      font-size: 1.3em;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #1de9b6;
+      transform: scale(1.1);
+    }
+
+    .product-card {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      background: #1a1a2e;
+      margin: 40px auto;
+      padding: 20px;
+      max-width: 900px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.15s ease-in-out;
+    }
+
+    .product-card:hover {
+      transform: scale(1.0);
+    }
+
+    .product-card img {
+      width: 45%;
+      border-radius: 10px;
+      margin-right: 20px;
+    }
+
+    .product-details {
+      flex: 1;
+      text-align: left;
+      color: #f3f3f3;
+    }
+
+    .product-details h1 {
+      font-size: 2em;
+      margin-bottom: 15px;
+    }
+
+    .product-details h2 {
+      font-size: 1.5em;
+      color: #ff6b35;
+      margin-bottom: 20px;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+    }
+
+    .checkbox-container input {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      accent-color: #f5350f;
+      cursor: pointer;
+      opacity: 0.5; /* Transparent par défaut */
+      transition: transform 0.3s ease, background-color 0.3s ease, opacity 0.3s ease; accent-color: 0.3s ease;
+    }
+
+    .checkbox-container input:hover {
+      transform: scale(1.1); /* Agrandir légèrement */
+      accent-color: #cc2504; /* Fond sombre */
+      opacity: 0.8; /* Légère opacité pour le hover */
+    }
+
+    .checkbox-container input:checked {
+      opacity: 1; /* Pleine opacité quand coché */
+    }
+
+    .checkbox-container input:disabled {
+      opacity: 0.2;
+      cursor: not-allowed;
+    }
+
+    .checkbox-container label {
+      font-size: 1em;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ff6b35;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2em;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #e65b2c;
+    }
+
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Tacos Fiesta</h1>
+  <p>Le meilleur des tacos, directement dans votre assiette</p>
+</header>
+
+<nav>
+  <a href="#accueil">Accueil</a>
+  <a href="#menu">Menu</a>
+  <a href="#about">À propos</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="product-card">
+  <img src="tacos.jpg" alt="Tacos délicieux">
+  <div class="product-details">
+    <h1>{{product.name}}</h1>
+    <p>{{product.description}}</p>
+    <h2>{{product.price}}</h2>
+    {% for <option value=""></option> in product.options %}
+
+      <form id="checkboxForm">
+        <div class="checkbox-container">
+          <input type="checkbox" id="option1" name="options" value={{loop.index0}}>
+          <label for="option1">{{option[0]}} <span>+ €{{option[0]}}</span></label>
+        </div>
+        <button type="button">Ajouter au panier</button>
+      </form>
+  </div>
+</div>
+
+<footer>
+  &copy; 2024 Tacos Fiesta. Tous droits réservés.
+</footer>
+
+<script>
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const maxChecked = 3;
+
+  function updateCheckboxes() {
+    const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
+
+    checkboxes.forEach((checkbox) => {
+      if (!checkbox.checked) {
+        checkbox.disabled = checkedCount >= maxChecked;
+      }
+    });
+  }
+
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', updateCheckboxes);
+  });
+
+  updateCheckboxes(); // Initialise l'état des cases
+</script>
+
+</body>
+</html>
