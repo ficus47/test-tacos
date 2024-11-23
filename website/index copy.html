@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tacos Fiesta</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #0b0d19;
+      color: #fff;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      text-align: center;
+      padding: 2em;
+      background: linear-gradient(45deg, #011827, #0b0d19);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      color: #00bcd4;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    header p {
+      font-size: 1.2em;
+      color: #bbb;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5em;
+      padding: 1em 0;
+      background-color: #0b0d19;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    nav a {
+      color: #00bcd4;
+      text-decoration: none;
+      font-size: 1.3em;
+      transition: color 0.3s;
+      transform: transform 0.3s;
+    }
+
+    nav a:hover {
+      color: #1de9b6;
+      transform: scale(1.1);
+    }
+
+    .hero {
+      height: 100vh;
+      background: url('baner.PNG') no-repeat center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .hero h2 {
+      font-size: 2.8em;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      color: #fff;
+    }
+
+    .hero p {
+      font-size: 1.5em;
+      color: #bbb;
+    }
+
+    section {
+      padding: 3em 2em;
+      text-align: center;
+    }
+
+    .about {
+      font-size: 15px;
+    }
+
+    .menu, .about, .contact {
+      background: #10122d;
+    }
+
+    .contact {
+      width: 100%;
+    }
+
+    h3 {
+      font-size: 2.2em;
+      color: #00bcd4;
+      margin-bottom: 1em;
+    }
+
+    .menu-items {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2em;
+    }
+
+    .menu-item {
+      background: #1a1e35;
+      border-radius: 10px;
+      padding: 1.5em;
+      max-width: 300px;
+      text-align: center;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+      transition: transform 0.3s;
+    }
+
+    .menu-item img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .menu-item:hover {
+      transform: scale(1.15);
+    }
+
+    .menu-item h4 {
+      margin: 1em 0;
+      color: #1de9b6;
+    }
+
+    .menu-item p {
+      color: #bbb;
+    }
+
+    form input, form textarea {
+      width: 80%;
+      margin: 1em auto;
+      padding: 10px;
+      background: #1a1e35;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+    }
+
+    form button {
+      background: #00bcd4;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    form button:hover {
+      background: #1de9b6;
+    }
+
+    footer {
+      padding: 1.5em;
+      text-align: center;
+      background: #011827;
+      color: #bbb;
+      font-size: 0.9em;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Tacos Fiesta</h1>
+    <p>Le meilleur des tacos, directement dans votre assiette.</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#menu">Menu</a>
+    <a href="#about">À propos</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="accueil">
+    <h2 style="color: #f5f5f7;">Bienvenue chez Tacos Fiesta</h2>
+    <p style="color: #d3d0f5;">Profitez des meilleurs tacos avec des ingrédients frais et savoureux.</p>
+  </section>
+
+  <!-- Menu Section -->
+  <section class="menu" id="menu">
+    <h3>Notre Menu</h3>
+    {% for tacos in product%}
+      <a herf={{tacos.link}} onclick="window.location.assign('page_web_produit_tacos.html')">
+        <div class="menu-item">
+          <img src={{tacos.image}} alt={{tacos.name}}>
+          <h4>{{tacos.name}}</h4>
+          <p>{{tacos.description}}</p>
+        </div>
+      </a>
+    {%endfor%}
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <h3>À propos</h3>
+    <p>Découvrez notre passion pour les tacos et notre engagement pour la qualité.</p>
+    </section>
+    <div style="text-align: : center; padding: 3.5em 2em; font-size: 1.1em"> 
+    <p>Fort de plusieurs années d’expérience dans la vente de tacos, le vendeur a su développer une expertise culinaire et commerciale qui lui permet de proposer des produits de qualité, alliant saveurs authentiques et service rapide. Son parcours dans divers établissements de restauration rapide et de street food lui a permis de perfectionner son savoir-faire, en maîtrisant la préparation des tacos avec une variété de garnitures fraîches, de sauces maison et de recettes créatives.
+
+      Au-delà de la technique culinaire, ce vendeur incarne des valeurs d’hospitalité, de respect et d’engagement envers ses clients. Chaque client est accueilli chaleureusement, et le vendeur s'assure que chaque commande soit préparée avec soin et attention, dans le respect des standards d’hygiène et de qualité. Il met un point d’honneur à offrir un service rapide tout en maintenant une ambiance conviviale et agréable.
+
+      Passionné par son métier, le vendeur de tacos accorde une importance particulière à la qualité des ingrédients utilisés. Il privilégie les produits frais et locaux, dans un souci constant d'amélioration de l'expérience gustative. L'authenticité, la satisfaction du client et l'esprit d'équipe sont les piliers qui guident son approche professionnelle. Il s’efforce de transmettre à ses collègues cet amour du travail bien fait et cette volonté de satisfaire chaque client, du plus fidèle au plus occasionnel.
+
+      En somme, ce vendeur de tacos est un passionné, un professionnel engagé, et un ambassadeur de la cuisine rapide mais soignée, toujours à l’écoute des attentes des clients et prêt à offrir une expérience culinaire de qualité.
+    </p>
+    </div>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <h3>Contactez-nous</h3>
+    <form>
+      <input type="text" placeholder="Nom" required>
+      <input type="email" placeholder="Email" required>
+      <textarea placeholder="Message" rows="5" required></textarea>
+      <button type="submit" style="display: flex; flex-direction: column; align-items: center; margin: 0 auto;">Envoyer</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Tacos Fiesta. Tous droits réservés.</p>
+  </footer>
+
+</body>
+</html>

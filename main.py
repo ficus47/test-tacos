@@ -5,7 +5,7 @@ def get_tacos_dict(ID):
         options = "frites grandes : + 0.5"
         return {"img":"website/tacos", "description":"bonjours ! this is a desc !", 
                 "name":"tacos horrible", "options":[option.split(":") for option in options],
-                "price":5.50}    
+                "price":5.50, "link":"/search/"+"tacos_horrible"}    
     else:
         return False
 
