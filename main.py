@@ -39,7 +39,7 @@ def custom_tacos(id):
     if dict_tacos:
         return render_template("website/model_page_web.html", product=dict_tacos)
     else:
-        return 404, "404.T error : tacos not found"
+        return render_template("website/tacos_not_found.hmtl", search=id)
     
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5000)
